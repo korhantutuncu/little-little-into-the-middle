@@ -1,0 +1,22 @@
+//In this section you can find some Active Directory(AD) queries for Active Directory Users and Computers(ADUC).
+//Bu bölümde Aktif Dizin için ADUC uygulaması üzerinden kullanılan bazı sorguları bulabilirsiniz.
+
+//Groups containing the word "admin"
+//Adında "admin" kelimesi geçen gruplar
+(&(&(objectcategory=group)(samaccountname=*admin*)))
+
+//Empty AD groups
+//Boş AD grupları
+(&(&(objectCategory=group)(!member=*)))
+
+//Active accounts
+//Aktif hesaplar
+(&(&(objectCategory=person)(objectClass=user)(!useraccountcontrol:1.2.840.113556.1.4.803:=2))) 
+
+//Accounts that "Password Never Expire" flag is on
+//"Password Never Expire" olarak ayarlanmış hesaplar
+(&(&(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=65536)))
+
+//Empty Organization Units(OU)
+//Boş OU lar
+(&(&(&(&(objectCategory=OrganizationalUnit)(!member=*)))))
